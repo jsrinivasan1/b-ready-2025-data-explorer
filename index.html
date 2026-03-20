@@ -525,7 +525,8 @@ function renderScatter(){
   if(cBy==='income'){gs=IO;cm=IC;}else{gs=Object.keys(RM);cm=RC;}
   const nm=cBy==='income'?IM:RM;
 
-  const ds=gs.map(g=>({label:nm[g],data:pts.filter(p=>p[cBy]===g).map(p=>({x:p.x,y:p.y,name:p.n,code:p.c})),backgroundColor:cm[g]+'CC',pointRadius:6,pointHoverRadius:9}));
+  const cProp=cBy==='income'?'i':'r';
+  const ds=gs.map(g=>({label:nm[g],data:pts.filter(p=>p[cProp]===g).map(p=>({x:p.x,y:p.y,name:p.n,code:p.c})),backgroundColor:cm[g]+'CC',pointRadius:6,pointHoverRadius:9}));
   ds.push({label:`Trend (r=${r.toFixed(3)})`,data:[{x:mnX,y:sl*mnX+ic},{x:mxX,y:sl*mxX+ic}],type:'line',borderColor:'#999',borderDash:[6,4],borderWidth:2,pointRadius:0,fill:false});
 
   dc('chart-scatter');
